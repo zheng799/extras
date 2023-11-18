@@ -15,11 +15,9 @@ netif_napi_add_weight() instead.
  nss_hal/ipq95xx/nss_hal_pvt.c |  6 +++-
  6 files changed, 120 insertions(+), 24 deletions(-)
 
-diff --git a/nss_hal/fsm9010/nss_hal_pvt.c b/nss_hal/fsm9010/nss_hal_pvt.c
-index 7dc90ee..6456908 100644
 --- a/nss_hal/fsm9010/nss_hal_pvt.c
 +++ b/nss_hal/fsm9010/nss_hal_pvt.c
-@@ -291,7 +291,11 @@ static int __nss_hal_request_irq(struct nss_ctx_instance *nss_ctx, struct nss_pl
+@@ -291,7 +291,11 @@ static int __nss_hal_request_irq(struct
  	}
  
  	int_ctx->irq = npd->irq[irq_num];
@@ -32,11 +30,9 @@ index 7dc90ee..6456908 100644
  	return 0;
  }
  
-diff --git a/nss_hal/ipq50xx/nss_hal_pvt.c b/nss_hal/ipq50xx/nss_hal_pvt.c
-index e3e4bd2..1cf1170 100644
 --- a/nss_hal/ipq50xx/nss_hal_pvt.c
 +++ b/nss_hal/ipq50xx/nss_hal_pvt.c
-@@ -598,7 +598,11 @@ static int __nss_hal_request_irq(struct nss_ctx_instance *nss_ctx, struct nss_pl
+@@ -599,7 +599,11 @@ static int __nss_hal_request_irq(struct
  		return err;
  	}
  
@@ -49,11 +45,9 @@ index e3e4bd2..1cf1170 100644
  	int_ctx->cause = cause;
  	err = request_irq(irq, nss_hal_handle_irq, 0, irq_name, int_ctx);
  	if (err) {
-diff --git a/nss_hal/ipq60xx/nss_hal_pvt.c b/nss_hal/ipq60xx/nss_hal_pvt.c
-index e76ef6d..1951427 100644
 --- a/nss_hal/ipq60xx/nss_hal_pvt.c
 +++ b/nss_hal/ipq60xx/nss_hal_pvt.c
-@@ -614,62 +614,102 @@ static int __nss_hal_request_irq(struct nss_ctx_instance *nss_ctx, struct nss_pl
+@@ -615,62 +615,102 @@ static int __nss_hal_request_irq(struct
  	irq_set_status_flags(irq, IRQ_DISABLE_UNLAZY);
  
  	if (irq_num == NSS_HAL_N2H_INTR_PURPOSE_EMPTY_BUFFER_SOS) {
@@ -166,11 +160,9 @@ index e76ef6d..1951427 100644
  		err = request_irq(irq, nss_hal_handle_irq, 0, "nss_profile_dma", int_ctx);
  	}
  
-diff --git a/nss_hal/ipq806x/nss_hal_pvt.c b/nss_hal/ipq806x/nss_hal_pvt.c
-index 5375087..1b4ae44 100644
 --- a/nss_hal/ipq806x/nss_hal_pvt.c
 +++ b/nss_hal/ipq806x/nss_hal_pvt.c
-@@ -1182,7 +1182,11 @@ static int __nss_hal_request_irq(struct nss_ctx_instance *nss_ctx, struct nss_pl
+@@ -1185,7 +1185,11 @@ static int __nss_hal_request_irq(struct
  	}
  
  	int_ctx->irq = npd->irq[irq_num];
@@ -183,11 +175,9 @@ index 5375087..1b4ae44 100644
  
  	return 0;
  }
-diff --git a/nss_hal/ipq807x/nss_hal_pvt.c b/nss_hal/ipq807x/nss_hal_pvt.c
-index 733d7f1..27a67d3 100644
 --- a/nss_hal/ipq807x/nss_hal_pvt.c
 +++ b/nss_hal/ipq807x/nss_hal_pvt.c
-@@ -656,62 +656,102 @@ static int __nss_hal_request_irq(struct nss_ctx_instance *nss_ctx, struct nss_pl
+@@ -659,62 +659,102 @@ static int __nss_hal_request_irq(struct
  	irq_set_status_flags(irq, IRQ_DISABLE_UNLAZY);
  
  	if (irq_num == NSS_HAL_N2H_INTR_PURPOSE_EMPTY_BUFFER_SOS) {
@@ -300,11 +290,9 @@ index 733d7f1..27a67d3 100644
  		err = request_irq(irq, nss_hal_handle_irq, 0, "nss_profile_dma", int_ctx);
  	}
  
-diff --git a/nss_hal/ipq95xx/nss_hal_pvt.c b/nss_hal/ipq95xx/nss_hal_pvt.c
-index d8735fa..8ee6ad8 100644
 --- a/nss_hal/ipq95xx/nss_hal_pvt.c
 +++ b/nss_hal/ipq95xx/nss_hal_pvt.c
-@@ -889,7 +889,11 @@ static int __nss_hal_request_irq(struct nss_ctx_instance *nss_ctx, struct nss_pl
+@@ -889,7 +889,11 @@ static int __nss_hal_request_irq(struct
  		return err;
  	}
  
@@ -317,5 +305,3 @@ index d8735fa..8ee6ad8 100644
  	int_ctx->cause = cause;
  	err = request_irq(irq, nss_hal_handle_irq, 0, irq_name, int_ctx);
  	if (err) {
--- 
-2.25.1
