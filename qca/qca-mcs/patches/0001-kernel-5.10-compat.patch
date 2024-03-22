@@ -15,7 +15,7 @@
          return single_open(file, mc_proc_snooper_show, NULL);
  }
  
-+#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,6,0)
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(6,6,0)
 +#define HAVE_PROC_OPS
 +#endif
 +
